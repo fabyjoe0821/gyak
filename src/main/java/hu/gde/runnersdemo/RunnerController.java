@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
-
 import java.util.List;
 
 @Controller
@@ -18,6 +17,7 @@ public class RunnerController {
     private RunnerRepository runnerRepository;
     @Autowired
     private LapTimeRepository lapTimeRepository;
+    @GetMapping("/runners")
     public String getAllRunners(Model model) {
         List<RunnerEntity> runners = runnerRepository.findAll();
         model.addAttribute("runners", runners);
@@ -25,10 +25,6 @@ public class RunnerController {
         RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.getForObject(uri, String.class);
         model.addAttribute("averagePace", result);
-    @GetMapping("/runners")
-    public String getAllRunners(Model model) {
-        List<RunnerEntity> runners = runnerRepository.findAll();
-        model.addAttribute("runners", runners);
         return "runners";
     }
 

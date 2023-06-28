@@ -45,13 +45,13 @@ public class RunnerRestController {
     public double getAveragePace() {
         List<RunnerEntity> runnerList = runnerRepository.findAll();
         if (!runnerList.isEmpty()) {
-            int sumPace = 0;
-            int countPace = 0;
+            int sumofPace = 0;
+            int countofPace = 0;
             for(int i = 0; i < runnerList.size(); i++){
-                sumPace += runnerList.get(i).getPace();
-                countPace++;
+                sumofPace += runnerList.get(i).getPace();
+                countofPace++;
             }
-            return (double) sumPace / countPace;
+            return (double) sumofPace / countofPace;
         } else {
             return -1.00;
         }
